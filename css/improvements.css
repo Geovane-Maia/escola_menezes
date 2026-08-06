@@ -177,5 +177,16 @@ h1,h2,h3{min-width:0;overflow-wrap:anywhere}
 @media(max-width:720px){.hero-grid,.about-grid,.segments-grid,.differences-grid,.gallery-grid,.contact-grid{grid-template-columns:1fr}}
 
 .rounded-image video{display:block;width:100%;aspect-ratio:1.1;object-fit:contain;background:var(--navy-deep);border-radius:32px;box-shadow:var(--shadow)}
+
+/* Hero: moldura proporcional à foto vertical, sem excesso de borda lateral */
+.hero-image{display:flex;justify-content:center}
+.hero-image>img{width:min(100%,380px);aspect-ratio:.8;object-fit:contain;background:transparent}
+@media(max-width:720px){.hero-image>img{width:min(100%,360px);aspect-ratio:.8}}
+
+/* Hero: flutuação suave para dar vida à imagem principal */
+.hero-image>img{animation:hero-photo-float 6s cubic-bezier(.4,0,.2,1) infinite;will-change:transform}
+.hero-image:hover>img{animation-play-state:paused}
+@keyframes hero-photo-float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(.35deg)}}
+@media(prefers-reduced-motion:reduce){.hero-image>img{animation:none;will-change:auto}}
 @media(max-width:850px){.methodology-grid{grid-template-columns:1fr}.enrollment-grid{grid-template-columns:1fr;gap:35px}.enrollment-checklist{max-width:520px}}
 @media(max-width:720px){.brand-lockup .brand-logo{width:137px;height:61px}.site-footer .brand-lockup .brand-logo{width:175px;height:75px}.methodology-grid{gap:12px;margin-top:33px}.methodology-card{padding:20px}.methodology-card h3{margin-top:13px;font-size:.95rem}.methodology-card p{font-size:.76rem}.enrollment-copy h2{font-size:2rem}.enrollment-actions{display:grid}.enrollment-actions .button{width:100%}.enrollment-checklist{padding:21px}.lightbox{padding:14px}.lightbox-close{top:10px;right:10px}}

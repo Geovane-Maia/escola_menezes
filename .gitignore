@@ -1,0 +1,15 @@
+# Cópias locais e arquivos de desenvolvimento
+backup/
+.vscode/
+.idea/
+*.log
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Variáveis locais e credenciais
+.env
+.env.*
+!.env.example
