@@ -9,6 +9,9 @@ backup/
 Thumbs.db
 desktop.ini
 
+# Banco de dados interno da ferramenta de edição (não vai pro site)
+.freebuff/
+
 # Variáveis locais e credenciais
 .env
 .env.*
