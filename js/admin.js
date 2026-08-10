@@ -239,13 +239,17 @@
   }
 
   function attachTextOverlay(el) {
-    const btn = makeOverlayButton("✎ Editar", () => {
-      if (el.dataset.contentKey === "anuncio") openAnuncioDialog(el);
+    const isAnuncio = el.dataset.contentKey === "anuncio";
+    // O anúncio é importante e pequeno: botão sempre visível no modo edição.
+    // Os demais textos mostram o botão ao passar o mouse (para não poluir).
+    const btn = makeOverlayButton("✎ " + (isAnuncio ? "Anúncio" : "Editar"), () => {
+      if (isAnuncio) openAnuncioDialog(el);
       else openTextDialog(el);
-    }, { textBtn: true });
+    }, { textBtn: !isAnuncio });
     btn._anchor = el;
     btn._position();
 
+    if (isAnuncio) return;
     // Aparece ao passar o mouse sobre o texto
     el._onOver = () => btn.classList.add("force");
     el._onLeave = () => btn.classList.remove("force");
