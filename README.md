@@ -26,9 +26,25 @@ Os botões são criados por JS **somente quando o token do admin está salvo** �
 ## Como as trocas são armazenadas
 
 - Arquivos enviados vão para `assets/<chave>-<timestamp>.<ext>` no repositório.
-- O mapa das trocas fica em **`assets/media.json`** (ex.: `{ "hero_image": "assets/hero_image-123.jpg" }`).
-- O site lê esse mapa via `js/media.js`; sem trocas, usa as imagens originais de `assets/`.
+- Mídias: **`assets/media.json`** (ex.: `{ "hero_image": "assets/hero_image-123.jpg" }`) — aplicado por `js/media.js`.
+- Conteúdo: **`assets/content.json`** — aplicado por `js/content.js`. Suporta:
+  - `anuncio` — texto + visível/oculto da faixa "Matrículas abertas".
+  - `textos` — títulos e textos de seções (ex.: `{ "hero_titulo": "..." }`).
+  - `depoimentos` — lista `[{ nome, relacao, texto }]`.
+  - `faq` — lista `[{ pergunta, resposta }]`.
+  - `galerias` — `{ estrutura: [...], vivencias: [...] }` (galerias dinâmicas).
+  - `analytics_id` — ID do Google Analytics (opcional).
+- Sem entradas nos JSON, o site usa o conteúdo padrão do HTML/JS.
 - Trocas **substituem** sem manter backup (o arquivo antigo é removido do repositório).
+
+## O que o modo edição permite
+
+- **Mídias:** trocar qualquer imagem/vídeo (arquivo ou link do YouTube).
+- **Textos:** clicar ✎ sobre um título/texto (aparece ao passar o mouse) e editar.
+- **Anúncio:** editar a faixa "Matrículas abertas" e ligar/desligar.
+- **Depoimentos e FAQ:** editar a lista completa (adicionar/remover/alterar).
+- **Galerias (Estrutura e Vivências):** adicionar/remover várias fotos.
+- **Configurações:** definir o ID do Google Analytics (botão na barra do modo edição).
 
 ## Estrutura
 

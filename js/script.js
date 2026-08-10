@@ -1,10 +1,10 @@
-const testimonials = [
+let testimonials = [
   { name: 'Avaliações públicas', relation: 'Pais, alunos e responsáveis', text: 'A escola é destacada pelo acolhimento, pelo convívio entre alunos e professores e pelo desenvolvimento socioemocional.' },
   { name: 'Avaliações públicas', relation: 'Comunidade escolar', text: 'A estrutura física e os espaços de aprendizagem aparecem entre os pontos positivos apontados pela comunidade.' },
   { name: 'Avaliações públicas', relation: 'Pais e responsáveis', text: 'A proposta valoriza o acompanhamento dos estudantes e a parceria entre escola e família.' },
 ];
 
-const questions = [
+let questions = [
   ['Quais segmentos de ensino são oferecidos?', 'Atendemos da Educação Infantil ao Ensino Médio, com proposta pedagógica específica para cada etapa e acompanhamento contínuo do desenvolvimento do aluno.'],
   ['Como funciona o processo de matrícula?', 'O primeiro passo é agendar uma visita. Após conhecer a escola, a família preenche a ficha de matrícula, entrega a documentação e assina o contrato. Toda a orientação é feita pela nossa secretaria.'],
   ['A escola oferece atividades extracurriculares?', 'Sim. Temos atividades esportivas, culturais e projetos pedagógicos ao longo do ano, como esportes coletivos, música, teatro, feira de ciências e olimpíadas do conhecimento.'],
@@ -66,38 +66,57 @@ $$('.number-item').filter((item) => item.querySelector('[data-count]')).forEach(
 const track = $('#testimonial-track');
 const dots = $('#slider-dots');
 let testimonialIndex = 0;
-testimonials.forEach((testimonial, index) => {
-  const article = document.createElement('article');
-  article.className = 'testimonial';
-  article.innerHTML = `<div class="testimonial-quote">“</div><p>“${testimonial.text}”</p><div class="testimonial-author"><span class="avatar">✓</span><div><strong>${testimonial.name}</strong><small>${testimonial.relation}</small></div><span class="stars" aria-label="Avaliações públicas positivas">★★★★☆</span></div><a class="testimonial-source" href="https://www.melhorescola.com.br/escola/menezes-e-sousa-colegio/avaliacoes" target="_blank" rel="noopener">Ver avaliações públicas</a>`;
-  track.appendChild(article);
-  const dot = document.createElement('button');
-  dot.type = 'button';
-  dot.setAttribute('aria-label', `Ir para o depoimento ${index + 1}`);
-  dot.addEventListener('click', () => showTestimonial(index));
-  dots.appendChild(dot);
-});
+
+// Renderiza a lista de depoimentos (usada também quando o admin edita via content.json)
+function renderTestimonials(list) {
+  testimonials = list;
+  testimonialIndex = 0;
+  track.innerHTML = '';
+  dots.innerHTML = '';
+  testimonials.forEach((testimonial, index) => {
+    const article = document.createElement('article');
+    article.className = 'testimonial';
+    article.innerHTML = `<div class="testimonial-quote">“</div><p>“${testimonial.text}”</p><div class="testimonial-author"><span class="avatar">✓</span><div><strong>${testimonial.name}</strong><small>${testimonial.relation}</small></div><span class="stars" aria-label="Avaliações públicas positivas">★★★★☆</span></div><a class="testimonial-source" href="https://www.melhorescola.com.br/escola/menezes-e-sousa-colegio/avaliacoes" target="_blank" rel="noopener">Ver avaliações públicas</a>`;
+    track.appendChild(article);
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Ir para o depoimento ${index + 1}`);
+    dot.addEventListener('click', () => showTestimonial(index));
+    dots.appendChild(dot);
+  });
+  showTestimonial(0);
+}
+
 function showTestimonial(index) {
   testimonialIndex = (index + testimonials.length) % testimonials.length;
   track.style.transform = `translateX(-${testimonialIndex * 100}%)`;
   $$('#slider-dots button').forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === testimonialIndex));
 }
+
+renderTestimonials(testimonials);
 $('#previous-testimonial').addEventListener('click', () => showTestimonial(testimonialIndex - 1));
 $('#next-testimonial').addEventListener('click', () => showTestimonial(testimonialIndex + 1));
-showTestimonial(0);
 
 const faqList = $('#faq-list');
-questions.forEach(([question, answer]) => {
-  const item = document.createElement('article');
-  item.className = 'faq-item';
-  item.innerHTML = `<button class="faq-question" type="button" aria-expanded="false"><span>${question}</span><span aria-hidden="true">+</span></button><div class="faq-answer"><div><p>${answer}</p></div></div>`;
-  const button = $('.faq-question', item);
-  button.addEventListener('click', () => {
-    const open = item.classList.toggle('open');
-    button.setAttribute('aria-expanded', String(open));
+
+// Renderiza a lista de perguntas (usada também quando o admin edita via content.json)
+function renderFaq(list) {
+  questions = list;
+  faqList.innerHTML = '';
+  questions.forEach(([question, answer]) => {
+    const item = document.createElement('article');
+    item.className = 'faq-item';
+    item.innerHTML = `<button class="faq-question" type="button" aria-expanded="false"><span>${question}</span><span aria-hidden="true">+</span></button><div class="faq-answer"><div><p>${answer}</p></div></div>`;
+    const button = $('.faq-question', item);
+    button.addEventListener('click', () => {
+      const open = item.classList.toggle('open');
+      button.setAttribute('aria-expanded', String(open));
+    });
+    faqList.appendChild(item);
   });
-  faqList.appendChild(item);
-});
+}
+
+renderFaq(questions);
 
 $('#contact-form').addEventListener('submit', (event) => {
   event.preventDefault();
@@ -154,18 +173,22 @@ function closeLightbox() {
   if (lastGalleryTrigger) lastGalleryTrigger.focus();
 }
 
-$$('#estrutura .gallery-grid figure').forEach((figure) => {
-  figure.tabIndex = 0;
-  figure.setAttribute('role', 'button');
-  figure.setAttribute('aria-label', `Ampliar imagem: ${$('figcaption', figure).textContent}`);
-  figure.addEventListener('click', () => openLightbox(figure));
-  figure.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      openLightbox(figure);
-    }
+function attachGalleryLightbox(container) {
+  if (!container) return;
+  $$('figure', container).forEach((figure) => {
+    figure.tabIndex = 0;
+    figure.setAttribute('role', 'button');
+    figure.setAttribute('aria-label', `Ampliar imagem: ${($('figcaption', figure)?.textContent || '').trim()}`);
+    figure.addEventListener('click', () => openLightbox(figure));
+    figure.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(figure);
+      }
+    });
   });
-});
+}
+attachGalleryLightbox($('#estrutura .gallery-grid'));
 
 lightboxClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (event) => {
@@ -174,3 +197,8 @@ lightbox.addEventListener('click', (event) => {
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !lightbox.hidden) closeLightbox();
 });
+
+// Expostos para o conteúdo dinâmico (js/content.js) re-renderizar após edições
+window.renderTestimonials = renderTestimonials;
+window.renderFaq = renderFaq;
+window.attachGalleryLightbox = attachGalleryLightbox;
