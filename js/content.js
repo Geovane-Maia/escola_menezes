@@ -53,8 +53,9 @@
   function applyAnuncio(anuncio) {
     const el = document.querySelector('[data-content-key="anuncio"]');
     if (!el) return;
+    const target = el.querySelector(".ab-text") || el;
     if (anuncio && typeof anuncio.texto === "string" && anuncio.texto.trim()) {
-      el.textContent = anuncio.texto;
+      target.textContent = anuncio.texto;
     }
     el.hidden = !!(anuncio && anuncio.ativo === false);
   }
@@ -66,20 +67,6 @@
       const value = textos[el.dataset.contentKey];
       if (typeof value === "string") el.textContent = value;
     }
-  }
-
-  function applyAnalytics(id) {
-    if (!id || window.gtag) return;
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
-    document.head.appendChild(script);
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function () {
-      window.dataLayer.push(arguments);
-    };
-    window.gtag("js", new Date());
-    window.gtag("config", id);
   }
 
   function apply(data) {
@@ -105,8 +92,6 @@
       if (Array.isArray(data.galerias.estrutura)) renderGallery("estrutura", data.galerias.estrutura);
       if (Array.isArray(data.galerias.vivencias)) renderGallery("vivencias", data.galerias.vivencias);
     }
-
-    applyAnalytics(data.analytics_id);
   }
 
   async function load() {

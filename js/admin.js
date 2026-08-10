@@ -281,12 +281,10 @@
     editBar.className = "edit-bar";
     editBar.innerHTML = `
       <span>✎ Modo edição ativo</span>
-      <button id="edit-settings" class="admin-btn">Configurações</button>
       <button id="edit-exit" class="admin-btn">Sair do modo edição</button>
       <button id="edit-logout" class="admin-btn admin-btn-ghost">Sair</button>`;
     document.body.appendChild(editBar);
 
-    editBar.querySelector("#edit-settings").addEventListener("click", openSettingsDialog);
     editBar.querySelector("#edit-exit").addEventListener("click", exitEditMode);
     editBar.querySelector("#edit-logout").addEventListener("click", () => {
       localStorage.removeItem(TOKEN_KEY);
@@ -813,51 +811,6 @@
 
     $("#gal-save").addEventListener("click", save);
     $("#gal-reset").addEventListener("click", reset);
-  }
-
-  // ---------- Configurações (Google Analytics) ----------
-  function openSettingsDialog() {
-    const { modal, close, $ } = openModal(`
-      <h3>Configurações</h3>
-      <label>Google Analytics <small>ID de acompanhamento, ex.: G-XXXXXXXXXX</small>
-        <input id="cfg-ga" type="text" placeholder="G-XXXXXXXXXX" />
-      </label>
-      <p class="admin-error" hidden></p>
-      <p class="admin-status" hidden></p>
-      <div class="admin-modal-actions">
-        <button id="cfg-save" class="admin-btn">Salvar</button>
-        <button id="cfg-cancel" class="admin-btn admin-btn-ghost">Fechar</button>
-      </div>`);
-
-    const input = $("#cfg-ga");
-    const { showError, showStatus } = modalFeedback($, $(".admin-error"), $(".admin-status"));
-    const busy = (on) => modal.querySelectorAll("button").forEach((b) => (b.disabled = on));
-    $("#cfg-cancel").addEventListener("click", close);
-
-    getRepoJson(CONTENT_PATH)
-      .then((map) => {
-        input.value = map.analytics_id || "";
-      })
-      .catch(() => {});
-
-    async function save() {
-      const value = input.value.trim();
-      try {
-        busy(true);
-        showStatus("Salvando no GitHub...");
-        const map = await getRepoJson(CONTENT_PATH);
-        if (value) map.analytics_id = value;
-        else delete map.analytics_id;
-        await putRepoJson(CONTENT_PATH, map);
-        showStatus("✓ Salvo! A atualização fica visível para todos em ~1 minuto.");
-        busy(false);
-      } catch (err) {
-        busy(false);
-        showError("Falha ao salvar: " + (err.message || err));
-      }
-    }
-
-    $("#cfg-save").addEventListener("click", save);
   }
 
   // ---------- Leitura de arquivos ----------
