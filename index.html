@@ -14,12 +14,13 @@
     <link rel="stylesheet" href="css/evolution.css" />
     <link rel="stylesheet" href="css/courses.css" />
     <link rel="stylesheet" href="css/improvements.css" />
+    <link rel="stylesheet" href="css/admin.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "School",
         "name": "Colégio Menezes e Sousa",
-        "url": "https://menezes-e-sousa.vercel.app/",
+        "url": "https://geovane-maia.github.io/escola_menezes/",
         "telephone": "+55 85 3269-0070",
         "email": "colegiomenezesesousa@gmail.com",
         "address": {
@@ -102,7 +103,7 @@
             </ul>
           </div>
           <div class="hero-image reveal reveal-delay-1">
-            <img src="assets/alunos-uniforme.png" alt="Alunos do Colégio Menezes e Sousa usando o uniforme da escola" />
+            <img src="assets/alunos-uniforme.png" data-media-key="hero_image" alt="Alunos do Colégio Menezes e Sousa usando o uniforme da escola" />
           </div>
         </div>
       </section>
@@ -116,7 +117,7 @@
             <a class="button button-primary" href="#contato">Fale com a escola <span aria-hidden="true">→</span></a>
           </div>
           <div class="welcome-video-frame reveal reveal-delay-1">
-            <video controls preload="metadata" playsinline aria-label="Vídeo de volta às aulas do Colégio Menezes e Sousa">
+            <video controls preload="metadata" playsinline data-media-key="video_volta_as_aulas" aria-label="Vídeo de volta às aulas do Colégio Menezes e Sousa">
               <source src="assets/videos/volta-as-aulas.mp4" type="video/mp4" />
               Seu navegador não suporta a reprodução de vídeo.
             </video>
@@ -126,7 +127,7 @@
 
       <section class="section" id="sobre">
         <div class="container about-grid">
-          <div class="rounded-image reveal"><video controls preload="metadata" playsinline aria-label="Vídeo sobre a história do Colégio Menezes e Sousa"><source src="assets/videos/historia-da-escola.mp4" type="video/mp4" />Seu navegador não suporta a reprodução de vídeo.</video></div>
+          <div class="rounded-image reveal"><video controls preload="metadata" playsinline data-media-key="video_historia" aria-label="Vídeo sobre a história do Colégio Menezes e Sousa"><source src="assets/videos/historia-da-escola.mp4" type="video/mp4" />Seu navegador não suporta a reprodução de vídeo.</video></div>
           <div class="reveal reveal-delay-1">
             <p class="section-kicker">Nossa escola</p>
             <h2>Conheça o Colégio Menezes e Sousa</h2>
@@ -149,9 +150,9 @@
         <div class="container">
           <div class="section-heading reveal"><p class="section-kicker">Segmentos</p><h2>Um percurso completo, da infância ao Ensino Médio</h2><p>Cada etapa tem proposta pedagógica própria, sempre com acompanhamento próximo e respeito ao ritmo de cada aluno.</p></div>
           <div class="cards-grid segments-grid">
-            <article class="segment-card reveal"><img src="assets/ingles-desde-cedo.png" alt="Crianças aprendendo com a professora em atividade de Inglês" loading="lazy" /><div><h3>Educação Infantil</h3><p>Primeiros passos com afeto, ludicidade e rotina bem estruturada, estimulando a curiosidade e a autonomia.</p><a class="course-more" href="#curso-detalhe" data-course="infantil">Saiba mais <span>→</span></a></div></article>
-            <article class="segment-card reveal reveal-delay-1"><img src="assets/alunos-uniforme.png" alt="Alunos de diferentes etapas usando o uniforme do Colégio Menezes e Sousa" loading="lazy" /><div><h3>Ensino Fundamental</h3><p>Base sólida em leitura, escrita e raciocínio lógico, com projetos que dão sentido ao que se aprende.</p><a class="course-more" href="#curso-detalhe" data-course="fundamental">Saiba mais <span>→</span></a></div></article>
-            <article class="segment-card segment-card-medio reveal reveal-delay-2"><img src="assets/medio.jpg" alt="Estudantes do Ensino Médio estudando juntos na biblioteca" loading="lazy" /><div><h3>Ensino Médio</h3><p>Preparação consistente para o ENEM e vestibulares, aliada à orientação de projeto de vida e carreira.</p><a class="course-more" href="#curso-detalhe" data-course="medio">Saiba mais <span>→</span></a></div></article>
+            <article class="segment-card reveal"><img src="assets/ingles-desde-cedo.png" data-media-key="curso_infantil" alt="Crianças aprendendo com a professora em atividade de Inglês" loading="lazy" /><div><h3>Educação Infantil</h3><p>Primeiros passos com afeto, ludicidade e rotina bem estruturada, estimulando a curiosidade e a autonomia.</p><a class="course-more" href="#curso-detalhe" data-course="infantil">Saiba mais <span>→</span></a></div></article>
+            <article class="segment-card reveal reveal-delay-1"><img src="assets/alunos-uniforme.png" data-media-key="curso_fundamental" alt="Alunos de diferentes etapas usando o uniforme do Colégio Menezes e Sousa" loading="lazy" /><div><h3>Ensino Fundamental</h3><p>Base sólida em leitura, escrita e raciocínio lógico, com projetos que dão sentido ao que se aprende.</p><a class="course-more" href="#curso-detalhe" data-course="fundamental">Saiba mais <span>→</span></a></div></article>
+            <article class="segment-card segment-card-medio reveal reveal-delay-2"><img src="assets/medio.jpg" data-media-key="curso_medio" alt="Estudantes do Ensino Médio estudando juntos na biblioteca" loading="lazy" /><div><h3>Ensino Médio</h3><p>Preparação consistente para o ENEM e vestibulares, aliada à orientação de projeto de vida e carreira.</p><a class="course-more" href="#curso-detalhe" data-course="medio">Saiba mais <span>→</span></a></div></article>
           </div>
 
           <div class="course-detail" id="curso-detalhe" hidden>
@@ -197,12 +198,12 @@
       <section class="section section-muted" id="estrutura">
         <div class="container"><div class="section-heading reveal"><p class="section-kicker">Estrutura</p><h2>Um espaço preparado para aprender e crescer</h2></div>
           <div class="gallery-grid">
-            <figure class="reveal"><img src="assets/sala.jpg" alt="Sala de aula ampla e iluminada com carteiras organizadas" loading="lazy" /><figcaption>Salas de aula</figcaption></figure>
-            <figure class="reveal reveal-delay-1"><img src="assets/biblioteca.jpg" alt="Biblioteca com estantes de livros e mesas de estudo" loading="lazy" /><figcaption>Biblioteca</figcaption></figure>
-            <figure class="reveal reveal-delay-2"><img src="assets/quadra.jpg" alt="Quadra poliesportiva coberta da escola" loading="lazy" /><figcaption>Quadra esportiva</figcaption></figure>
-            <figure class="reveal"><img src="assets/laboratorio.jpg" alt="Laboratório de ciências com microscópios e bancadas" loading="lazy" /><figcaption>Laboratório</figcaption></figure>
-            <figure class="reveal reveal-delay-1"><img src="assets/convivencia.jpg" alt="Pátio arborizado com bancos para convivência dos alunos" loading="lazy" /><figcaption>Espaços de convivência</figcaption></figure>
-            <figure class="reveal reveal-delay-2"><img src="assets/parque.jpg" alt="Parquinho seguro com brinquedos coloridos para crianças" loading="lazy" /><figcaption>Área infantil</figcaption></figure>
+            <figure class="reveal"><img src="assets/sala.jpg" data-media-key="estrutura_sala" alt="Sala de aula ampla e iluminada com carteiras organizadas" loading="lazy" /><figcaption>Salas de aula</figcaption></figure>
+            <figure class="reveal reveal-delay-1"><img src="assets/biblioteca.jpg" data-media-key="estrutura_biblioteca" alt="Biblioteca com estantes de livros e mesas de estudo" loading="lazy" /><figcaption>Biblioteca</figcaption></figure>
+            <figure class="reveal reveal-delay-2"><img src="assets/quadra.jpg" data-media-key="estrutura_quadra" alt="Quadra poliesportiva coberta da escola" loading="lazy" /><figcaption>Quadra esportiva</figcaption></figure>
+            <figure class="reveal"><img src="assets/laboratorio.jpg" data-media-key="estrutura_laboratorio" alt="Laboratório de ciências com microscópios e bancadas" loading="lazy" /><figcaption>Laboratório</figcaption></figure>
+            <figure class="reveal reveal-delay-1"><img src="assets/convivencia.jpg" data-media-key="estrutura_convivencia" alt="Pátio arborizado com bancos para convivência dos alunos" loading="lazy" /><figcaption>Espaços de convivência</figcaption></figure>
+            <figure class="reveal reveal-delay-2"><img src="assets/parque.jpg" data-media-key="estrutura_parque" alt="Parquinho seguro com brinquedos coloridos para crianças" loading="lazy" /><figcaption>Área infantil</figcaption></figure>
           </div>
         </div>
       </section>
@@ -216,15 +217,15 @@
           </div>
           <div class="school-life-grid">
             <figure class="school-life-card reveal">
-              <img src="assets/feira-cultural.jpg" alt="Crianças participando de atividades da Semana da Criança" loading="lazy" />
+              <img src="assets/feira-cultural.jpg" data-media-key="vivencia_semana_crianca" alt="Crianças participando de atividades da Semana da Criança" loading="lazy" />
               <figcaption><strong>Semana da Criança</strong><span>Brincadeiras, apresentações e convivência.</span></figcaption>
             </figure>
             <figure class="school-life-card reveal reveal-delay-1">
-              <img src="assets/atividade-alunos.png" alt="Alunos participando de uma apresentação na Feira Cultural" loading="lazy" />
+              <img src="assets/atividade-alunos.png" data-media-key="vivencia_feira_cultural" alt="Alunos participando de uma apresentação na Feira Cultural" loading="lazy" />
               <figcaption><strong>Feira Cultural</strong><span>Compartilhando histórias, saberes e vivências.</span></figcaption>
             </figure>
             <figure class="school-life-card reveal reveal-delay-2">
-              <img src="assets/alunos-aula.jpg" alt="Alunos reunidos em uma atividade de exposição de painéis" loading="lazy" />
+              <img src="assets/alunos-aula.jpg" data-media-key="vivencia_projetos" alt="Alunos reunidos em uma atividade de exposição de painéis" loading="lazy" />
               <figcaption><strong>Projetos e exposições</strong><span>Protagonismo e troca de conhecimentos.</span></figcaption>
             </figure>
           </div>
@@ -239,12 +240,12 @@
             <p>Celebramos cada aprovação e cada caminho escolhido pelos nossos estudantes.</p>
           </div>
           <div class="student-results-grid">
-            <figure class="student-result-card reveal"><img src="assets/aprovacao-cibely-pinheiro-redacao-uece.png" alt="Cibely Pinheiro, aluna do Ensino Médio, aprovada na redação da UECE" loading="lazy" /><figcaption><strong>Cibely Pinheiro</strong><span>Redação · UECE</span></figcaption></figure>
-            <figure class="student-result-card reveal reveal-delay-1"><img src="assets/aprovacao-mariana-lourenco-educacao-fisica-unifor.png" alt="Mariana Lourenço, aluna do Ensino Médio, aprovada em Educação Física" loading="lazy" /><figcaption><strong>Mariana Lourenço</strong><span>Educação Física · UNIFOR</span></figcaption></figure>
-            <figure class="student-result-card reveal reveal-delay-2"><img src="assets/aprovacao-thayna-oliveira-fisica-uece.png" alt="Thayná Oliveira, aluna do Ensino Médio, aprovada para a segunda fase da UECE" loading="lazy" /><figcaption><strong>Thayná Oliveira</strong><span>Física · UECE</span></figcaption></figure>
-            <figure class="student-result-card reveal"><img src="assets/aprovacao-thalyson-albino-administracao-uece.png" alt="Thalyson Albino, aluno do Ensino Médio, aprovado para a segunda fase da UECE" loading="lazy" /><figcaption><strong>Thalyson Albino</strong><span>Administração · UECE</span></figcaption></figure>
-            <figure class="student-result-card reveal reveal-delay-1"><img src="assets/aprovacao-yasmin-do-nascimento-educacao-fisica-uece.png" alt="Yasmin do Nascimento, aprovada em primeiro lugar em Educação Física na UECE" loading="lazy" /><figcaption><strong>Yasmin do Nascimento</strong><span>1º lugar · Educação Física · UECE</span></figcaption></figure>
-            <figure class="student-result-card reveal reveal-delay-2"><img src="assets/aprovacao-francisco-evaristo-contabeis-uece.png" alt="Francisco Evaristo, aprovado em Ciências Contábeis na UECE e Ciências Atuariais na UFC" loading="lazy" /><figcaption><strong>Francisco Evaristo</strong><span>Ciências Contábeis · UECE</span></figcaption></figure>
+            <figure class="student-result-card reveal"><img src="assets/aprovacao-cibely-pinheiro-redacao-uece.png" data-media-key="conquista_cibely_pinheiro" alt="Cibely Pinheiro, aluna do Ensino Médio, aprovada na redação da UECE" loading="lazy" /><figcaption><strong>Cibely Pinheiro</strong><span>Redação · UECE</span></figcaption></figure>
+            <figure class="student-result-card reveal reveal-delay-1"><img src="assets/aprovacao-mariana-lourenco-educacao-fisica-unifor.png" data-media-key="conquista_mariana_lourenco" alt="Mariana Lourenço, aluna do Ensino Médio, aprovada em Educação Física" loading="lazy" /><figcaption><strong>Mariana Lourenço</strong><span>Educação Física · UNIFOR</span></figcaption></figure>
+            <figure class="student-result-card reveal reveal-delay-2"><img src="assets/aprovacao-thayna-oliveira-fisica-uece.png" data-media-key="conquista_thayna_oliveira" alt="Thayná Oliveira, aluna do Ensino Médio, aprovada para a segunda fase da UECE" loading="lazy" /><figcaption><strong>Thayná Oliveira</strong><span>Física · UECE</span></figcaption></figure>
+            <figure class="student-result-card reveal"><img src="assets/aprovacao-thalyson-albino-administracao-uece.png" data-media-key="conquista_thalyson_albino" alt="Thalyson Albino, aluno do Ensino Médio, aprovado para a segunda fase da UECE" loading="lazy" /><figcaption><strong>Thalyson Albino</strong><span>Administração · UECE</span></figcaption></figure>
+            <figure class="student-result-card reveal reveal-delay-1"><img src="assets/aprovacao-yasmin-do-nascimento-educacao-fisica-uece.png" data-media-key="conquista_yasmin_nascimento" alt="Yasmin do Nascimento, aprovada em primeiro lugar em Educação Física na UECE" loading="lazy" /><figcaption><strong>Yasmin do Nascimento</strong><span>1º lugar · Educação Física · UECE</span></figcaption></figure>
+            <figure class="student-result-card reveal reveal-delay-2"><img src="assets/aprovacao-francisco-evaristo-contabeis-uece.png" data-media-key="conquista_francisco_evaristo" alt="Francisco Evaristo, aprovado em Ciências Contábeis na UECE e Ciências Atuariais na UFC" loading="lazy" /><figcaption><strong>Francisco Evaristo</strong><span>Ciências Contábeis · UECE</span></figcaption></figure>
           </div>
         </div>
       </section>
@@ -345,5 +346,7 @@
     <a class="whatsapp-float" href="https://wa.me/558532690070" target="_blank" rel="noopener" aria-label="Falar com o colégio pelo WhatsApp"><svg class="whatsapp-icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp"></use></svg></a>
     <script src="js/script.js"></script>
     <script src="js/courses.js"></script>
+    <script src="js/media.js"></script>
+    <script src="js/admin.js"></script>
   </body>
 </html>

@@ -1,0 +1,199 @@
+/* ============================================================
+   Modo edição do administrador + mídias dinâmicas
+   (elementos de admin só são criados por JS — invisíveis p/ visitantes)
+   ============================================================ */
+
+/* Embed de vídeo (YouTube) responsivo */
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Modal genérico (login / troca de mídia) ---------- */
+.admin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 16, 40, 0.65);
+  padding: 16px;
+}
+
+.admin-modal-card {
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  color: #16265a;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.admin-modal-card h3 {
+  margin: 0 0 16px;
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 18px;
+}
+
+.admin-modal-card h3 code {
+  background: #eef1f8;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 14px;
+}
+
+.admin-modal-card label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-modal-card label small {
+  display: block;
+  font-weight: 400;
+  color: #667;
+  margin-top: 2px;
+}
+
+.admin-modal-card input[type="text"],
+.admin-modal-card input[type="password"],
+.admin-modal-card input[type="url"],
+.admin-modal-card input[type="file"] {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid #c7cfe2;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.admin-modal-card input:focus {
+  outline: 2px solid #16265a;
+  outline-offset: 1px;
+}
+
+.admin-error {
+  color: #c0392b;
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+.admin-status {
+  color: #1e7e34;
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+.admin-hint {
+  color: #667;
+  font-size: 13px;
+  margin: 0 0 14px;
+}
+
+.admin-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.admin-btn {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: #16265a;
+  border: 1px solid #16265a;
+  border-radius: 8px;
+  padding: 9px 14px;
+  cursor: pointer;
+}
+
+.admin-btn:hover {
+  background: #1f3478;
+}
+
+.admin-btn-ghost {
+  background: #fff;
+  color: #16265a;
+}
+
+.admin-btn-ghost:hover {
+  background: #eef1f8;
+}
+
+.admin-btn-danger {
+  background: #c0392b;
+  border-color: #c0392b;
+}
+
+.admin-btn-danger:hover {
+  background: #a93226;
+}
+
+/* ---------- Barra do modo edição ---------- */
+.edit-bar {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #16265a;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 10px 8px 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.edit-bar .admin-btn {
+  background: #fff;
+  color: #16265a;
+  border: none;
+}
+
+.edit-bar .admin-btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Botão ✎ sobre cada mídia ---------- */
+.media-edit-btn {
+  position: fixed;
+  z-index: 9998;
+  background: #16265a;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.media-edit-btn:hover {
+  background: #1f3478;
+}
