@@ -4,7 +4,7 @@
    Implementação própria em CSS puro, com as cores da paleta do site
    (navy/red/yellow) em vez das cores originais do banner de referência. */
 
-.hero-slider{position:relative;overflow:hidden;min-height:100vh;padding:168px 0 118px;background:var(--navy-deep)}
+.hero-slider{position:relative;overflow:hidden;min-height:100vh;padding:168px 0 118px;background:var(--navy-deep);touch-action:pan-y}
 
 /* SVG apenas com o gradiente (id referenciado pelo círculo animado) */
 .hero-slider-defs{position:absolute;width:0;height:0;overflow:hidden}
@@ -18,8 +18,9 @@
 .hero-slider::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.1;background-image:linear-gradient(rgba(67,214,255,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(67,214,255,.3) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.85),transparent 86%)}
 
 .hero-slides{position:absolute;inset:0;z-index:2}
-.hero-slide{position:absolute;inset:0;display:flex;align-items:center;opacity:0;visibility:hidden;transition:opacity .45s ease}
+.hero-slide{position:absolute;inset:0;display:flex;align-items:center;opacity:0;visibility:hidden;transition:opacity .45s ease,transform .3s ease}
 .hero-slide.is-active{opacity:1;visibility:visible}
+.hero-slide.is-dragging{transition:none}
 
 /* Foto dentro do círculo: posição/tamanho definidos por JS (mesmos dados do círculo) */
 .hero-slide-photo{position:absolute;overflow:hidden;border-radius:50%;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .5s ease,transform .55s cubic-bezier(.22,1,.36,1);box-shadow:0 34px 60px -34px rgba(0,0,0,.65)}

@@ -195,6 +195,62 @@
     placePhoto(slides[index], geo);
   });
 
+  // Arrastar (swipe) no celular: navega o carrossel sem conflitar com a rolagem
+  const SWIPE_THRESHOLD = 60; // px de arrasto para trocar de slide
+  let drag = null;
+
+  slider.addEventListener("pointerdown", (event) => {
+    if (event.pointerType !== "touch" && event.pointerType !== "pen") return;
+    if (event.target.closest("button, a")) return;
+    drag = { startX: event.clientX, startY: event.clientY, dx: 0, locked: false, slide: null };
+    try {
+      slider.setPointerCapture(event.pointerId);
+    } catch {
+      // captura de ponteiro indisponível — segue sem ela
+    }
+  });
+
+  slider.addEventListener("pointermove", (event) => {
+    if (!drag) return;
+    const dx = event.clientX - drag.startX;
+    const dy = event.clientY - drag.startY;
+
+    if (!drag.locked) {
+      // Se o dedo anda mais na vertical, deixa a página rolar e cancela o swipe
+      if (Math.abs(dy) > Math.abs(dx) || Math.abs(dx) < 8) {
+        if (Math.abs(dy) > Math.abs(dx)) drag = null;
+        return;
+      }
+      drag.locked = true;
+      drag.slide = slides[index];
+      drag.slide.classList.add("is-dragging");
+    }
+
+    drag.dx = dx;
+    drag.slide.style.transform = `translateX(${dx}px)`;
+  });
+
+  const finishDrag = (cancel) => {
+    if (!drag) return;
+    if (drag.slide) {
+      drag.slide.classList.remove("is-dragging");
+      drag.slide.style.transform = "";
+      if (!cancel && drag.locked) {
+        if (drag.dx < -SWIPE_THRESHOLD) {
+          goTo(index + 1);
+          restart();
+        } else if (drag.dx > SWIPE_THRESHOLD) {
+          goTo(index - 1);
+          restart();
+        }
+      }
+    }
+    drag = null;
+  };
+
+  slider.addEventListener("pointerup", () => finishDrag(false));
+  slider.addEventListener("pointercancel", () => finishDrag(true));
+
   // Pausa ao passar o mouse, ao sair da tela ou com a aba oculta
   slider.addEventListener("mouseenter", stop);
   slider.addEventListener("mouseleave", start);
