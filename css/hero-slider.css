@@ -1,0 +1,80 @@
+/* Hero em carrossel — estrutura inspirada no banner do Colégio Núcleo
+   (Swiper "circle-bg"): fundo azul-escuro, círculo de gradiente animado
+   atrás da foto, texto com sombra, setas laterais, dots e autoplay.
+   Implementação própria em CSS puro, com as cores da paleta do site
+   (navy/red/yellow) em vez das cores originais do banner de referência. */
+
+.hero-slider{position:relative;overflow:hidden;min-height:100vh;padding:168px 0 118px;background:var(--navy-deep)}
+
+/* SVG apenas com o gradiente (id referenciado pelo círculo animado) */
+.hero-slider-defs{position:absolute;width:0;height:0;overflow:hidden}
+
+/* Círculo de gradiente: único para todo o carrossel, cresce/cobre e encolhe
+   para a posição do próximo slide (mesma ideia do efeito circle-bg). */
+.hero-circle-svg{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none}
+.hero-circle{will-change:cx,cy,r}
+
+/* Malha técnica sutil (mesmo padrão das demais seções escuras do site) */
+.hero-slider::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.1;background-image:linear-gradient(rgba(67,214,255,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(67,214,255,.3) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.85),transparent 86%)}
+
+.hero-slides{position:absolute;inset:0;z-index:2}
+.hero-slide{position:absolute;inset:0;display:flex;align-items:center;opacity:0;visibility:hidden;transition:opacity .45s ease}
+.hero-slide.is-active{opacity:1;visibility:visible}
+
+/* Foto dentro do círculo: posição/tamanho definidos por JS (mesmos dados do círculo) */
+.hero-slide-photo{position:absolute;overflow:hidden;border-radius:50%;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .5s ease,transform .55s cubic-bezier(.22,1,.36,1);box-shadow:0 34px 60px -34px rgba(0,0,0,.65)}
+.hero-slide.is-active .hero-slide-photo{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.hero-slide-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+
+/* Texto: rótulo + título com sombra destacada (text-shadow do site de referência) */
+.hero-slide-copy{position:relative;z-index:3;width:min(46%,520px);margin-left:clamp(28px,8vw,120px);text-align:left}
+.hero-slide-copy>*{opacity:0;transform:translateX(46px);transition:opacity .55s ease,transform .6s cubic-bezier(.22,1,.36,1)}
+.hero-slide.is-active .hero-slide-copy>*{opacity:1;transform:none}
+.hero-slide.is-active .hero-slide-kicker{transition-delay:.14s}
+.hero-slide.is-active .hero-slide-title{transition-delay:.24s}
+.hero-slide.is-active .hero-slide-actions{transition-delay:.34s}
+
+.hero-slide-kicker{margin:0;color:#fff;font:600 clamp(.8rem,1.4vw,1.05rem) Poppins,Arial,sans-serif;letter-spacing:.4em;text-transform:uppercase;text-shadow:4px 3px 0 var(--navy-deep)}
+.hero-slide-title{margin:16px 0 0;color:#fff;font:800 clamp(2.5rem,6.2vw,4.9rem)/1.02 Poppins,Arial,sans-serif;letter-spacing:-.01em;text-transform:uppercase;text-shadow:4px 3px 0 var(--navy-deep)}
+.hero-slide-title em{font-style:normal;color:var(--yellow)}
+
+.hero-slide-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-slide-actions .button{font-size:.82rem;padding:12px 20px}
+.hero-slide-actions .button-yellow{box-shadow:0 14px 28px -14px rgba(243,200,75,.6)}
+.hero-slide-actions .button-outline-light{border:2px solid rgba(255,255,255,.55);background:transparent;color:#fff}
+.hero-slide-actions .button-outline-light:hover{background:rgba(255,255,255,.12);border-color:#fff}
+
+/* Setas quadradas cinza nas laterais (como no site de referência) */
+.hero-slider-arrow{position:absolute;top:50%;z-index:10;display:grid;place-items:center;width:60px;height:60px;transform:translateY(-50%);border:0;background:var(--navy);color:#fff;cursor:pointer;box-shadow:0 12px 24px -16px rgba(0,0,0,.7);transition:background .3s}
+.hero-slider-arrow svg{transition:transform .3s}
+.hero-slider-arrow:hover{background:var(--red)}
+.hero-slider-arrow:hover svg{transform:scale(1.45)}
+.hero-slider-arrow:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.hero-slider-prev{left:25px}
+.hero-slider-next{right:25px}
+
+/* Dots de paginação */
+.hero-slider-dots{position:absolute;bottom:26px;left:50%;z-index:10;display:flex;gap:9px;transform:translateX(-50%)}
+.hero-slider-dots button{width:11px;height:11px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.32);cursor:pointer;transition:width .3s,background .3s}
+.hero-slider-dots button.active{width:30px;border-radius:999px;background:var(--yellow)}
+.hero-slider-dots button:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+
+@media(max-width:991px){
+  .hero-slider-arrow{display:none}
+}
+
+@media(max-width:720px){
+  .hero-slider{padding:132px 0 84px;min-height:92vh}
+  .hero-slide-copy{width:min(72%,340px);margin-left:clamp(20px,7vw,40px)}
+  .hero-slide-kicker{font-size:.72rem;letter-spacing:.3em}
+  .hero-slide-title{font-size:clamp(2.1rem,10vw,3rem)}
+  .hero-slide-actions{margin-top:26px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-slider .hero-slide,
+  .hero-slide-photo,
+  .hero-slide-copy>*{transition:none}
+  .hero-slide-photo{transform:translate(-50%,-50%) scale(1)}
+  .hero-slide-copy>*{transform:none}
+}

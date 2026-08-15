@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/evolution.css" />
     <link rel="stylesheet" href="css/courses.css" />
     <link rel="stylesheet" href="css/improvements.css" />
+    <link rel="stylesheet" href="css/hero-slider.css" />
     <link rel="stylesheet" href="css/admin.css" />
     <script type="application/ld+json">
       {
@@ -86,26 +87,97 @@
     </header>
 
     <main>
-      <section class="hero" id="inicio">
-        <div class="glow glow-yellow"></div><div class="glow glow-red"></div>
-        <div class="container hero-grid">
-          <div class="hero-copy reveal">
-            <h1 data-content-key="hero_titulo">Educação que prepara para o <em>futuro</em></h1>
-            <p data-content-key="hero_subtitulo">No Colégio Menezes e Sousa, cada aluno é incentivado a aprender, crescer e desenvolver todo o seu potencial.</p>
-            <div class="hero-buttons">
-              <a class="button button-primary" href="#sobre">Conheça nossa escola <span aria-hidden="true">→</span></a>
-              <a class="button button-outline" href="https://wa.me/558532690070?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Col%C3%A9gio%20Menezes%20e%20Sousa." target="_blank" rel="noopener"><svg class="whatsapp-icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp"></use></svg> Fale pelo WhatsApp</a>
+      <section class="hero-slider" id="inicio" role="region" aria-roledescription="carrossel" aria-label="Destaques do Colégio Menezes e Sousa">
+        <svg class="hero-slider-defs" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="50%" stop-color="#d94632">
+                <animate attributeName="stop-color" values="#d94632;#a92818;#d94632" dur="5s" repeatCount="indefinite" />
+              </stop>
+              <stop offset="100%" stop-color="#f3c84b">
+                <animate attributeName="stop-color" values="#f3c84b;#e0a51f;#f3c84b" dur="5s" repeatCount="indefinite" />
+              </stop>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <svg class="hero-circle-svg" aria-hidden="true" focusable="false">
+          <circle class="hero-circle" fill="url(#hero-gradient)" />
+        </svg>
+
+        <div class="hero-slides">
+          <article class="hero-slide is-active" data-circle-cx=".58" data-circle-cy=".5" data-circle-r=".19" aria-hidden="false">
+            <div class="hero-slide-photo">
+              <img src="assets/alunos-uniforme.png" data-media-key="hero_image" alt="Alunos do Colégio Menezes e Sousa usando o uniforme da escola" />
             </div>
-            <ul class="hero-highlights" aria-label="Diferenciais da escola">
-              <li><span>✦</span> Ensino de qualidade</li>
-              <li><span>♡</span> Ambiente acolhedor</li>
-              <li><span>✧</span> Formação completa</li>
-            </ul>
-          </div>
-          <div class="hero-image reveal reveal-delay-1">
-            <img src="assets/alunos-uniforme.png" data-media-key="hero_image" alt="Alunos do Colégio Menezes e Sousa usando o uniforme da escola" />
-          </div>
+            <div class="hero-slide-copy">
+              <h5 class="hero-slide-kicker" data-content-key="hero_slide1_kicker">Bem-vindo</h5>
+              <h2 class="hero-slide-title" data-content-key="hero_slide1_titulo">Educação que prepara para o <em>futuro</em></h2>
+              <div class="hero-slide-actions">
+                <a class="button button-yellow" href="#sobre">Conheça nossa escola <span aria-hidden="true">→</span></a>
+                <a class="button button-outline-light" href="https://wa.me/558532690070?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Col%C3%A9gio%20Menezes%20e%20Sousa." target="_blank" rel="noopener"><svg class="whatsapp-icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp"></use></svg> Fale pelo WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide" data-circle-cx=".6" data-circle-cy=".5" data-circle-r=".18" aria-hidden="true">
+            <div class="hero-slide-photo">
+              <img src="assets/atividade-alunos.png" data-media-key="hero_slide2_image" alt="Alunos em atividade pedagógica na escola" />
+            </div>
+            <div class="hero-slide-copy">
+              <h5 class="hero-slide-kicker" data-content-key="hero_slide2_kicker">Praticar</h5>
+              <h2 class="hero-slide-title" data-content-key="hero_slide2_titulo">Empatia</h2>
+            </div>
+          </article>
+
+          <article class="hero-slide" data-circle-cx=".68" data-circle-cy=".5" data-circle-r=".2" aria-hidden="true">
+            <div class="hero-slide-photo">
+              <img src="assets/feira-cultural.jpg" data-media-key="hero_slide3_image" alt="Alunos apresentando trabalhos na Feira Cultural" />
+            </div>
+            <div class="hero-slide-copy">
+              <h5 class="hero-slide-kicker" data-content-key="hero_slide3_kicker">Desenvolver</h5>
+              <h2 class="hero-slide-title" data-content-key="hero_slide3_titulo">Criatividade</h2>
+            </div>
+          </article>
+
+          <article class="hero-slide" data-circle-cx=".6" data-circle-cy=".5" data-circle-r=".18" aria-hidden="true">
+            <div class="hero-slide-photo">
+              <img src="assets/infantil.jpg" data-media-key="hero_slide4_image" alt="Crianças da Educação Infantil em momento de aprendizado" />
+            </div>
+            <div class="hero-slide-copy">
+              <h5 class="hero-slide-kicker" data-content-key="hero_slide4_kicker">Estimular</h5>
+              <h2 class="hero-slide-title" data-content-key="hero_slide4_titulo">Virtudes</h2>
+            </div>
+          </article>
+
+          <article class="hero-slide" data-circle-cx=".6" data-circle-cy=".5" data-circle-r=".18" aria-hidden="true">
+            <div class="hero-slide-photo">
+              <img src="assets/alunos-aula.jpg" data-media-key="hero_slide5_image" alt="Alunos reunidos em atividade de exposição de painéis" />
+            </div>
+            <div class="hero-slide-copy">
+              <h5 class="hero-slide-kicker" data-content-key="hero_slide5_kicker">Produzir</h5>
+              <h2 class="hero-slide-title" data-content-key="hero_slide5_titulo">Conhecimento</h2>
+            </div>
+          </article>
+
+          <article class="hero-slide" data-circle-cx=".6" data-circle-cy=".5" data-circle-r=".18" aria-hidden="true">
+            <div class="hero-slide-photo">
+              <img src="assets/parque.jpg" data-media-key="hero_slide6_image" alt="Crianças brincando no parquinho da escola" />
+            </div>
+            <div class="hero-slide-copy">
+              <h5 class="hero-slide-kicker" data-content-key="hero_slide6_kicker">Despertar</h5>
+              <h2 class="hero-slide-title" data-content-key="hero_slide6_titulo">Consciência</h2>
+            </div>
+          </article>
         </div>
+
+        <button class="hero-slider-arrow hero-slider-prev" type="button" aria-label="Slide anterior">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M15 4 L7 12 L15 20" /></svg>
+        </button>
+        <button class="hero-slider-arrow hero-slider-next" type="button" aria-label="Próximo slide">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M9 4 L17 12 L9 20" /></svg>
+        </button>
+        <div class="hero-slider-dots" role="group" aria-label="Navegar pelos destaques"></div>
       </section>
 
       <section class="section welcome-video-section" id="volta-as-aulas">
@@ -345,6 +417,7 @@
     <footer class="site-footer"><div class="container footer-grid"><div><a class="brand brand-dark brand-lockup" href="#inicio"><img class="brand-logo" src="assets/logo-public.jpg" alt="Logo do Colégio Menezes e Sousa" /></a><p class="footer-description">Há mais de três décadas formando alunos preparados para o futuro, com ensino de qualidade e um ambiente acolhedor.</p><div class="socials"><a href="https://www.instagram.com/menezesesousa_oficial" target="_blank" rel="noopener" aria-label="Instagram do Colégio Menezes e Sousa">◎</a></div></div><nav><h3>Links rápidos</h3><a href="#inicio">Início</a><a href="#sobre">Sobre</a><a href="#ensino">Ensino</a><a href="#estrutura">Estrutura</a><a href="#vivencias">Vivências</a><a href="#conquistas">Conquistas</a><a href="#faq">Perguntas frequentes</a><a href="#contato">Contato</a></nav><div><h3>Contato</h3><p>Avenida Bulevar I, 98<br />Jangurussu, Fortaleza — CE</p><a href="tel:+558532690070">(85) 3269-0070</a><a href="mailto:colegiomenezesesousa@gmail.com">colegiomenezesesousa@gmail.com</a></div><div><h3>Atendimento</h3><p>Segunda a sexta, das 7h às 18h.<br />Sábados, das 8h às 11h.</p><a class="button button-accent" href="#contato">Agende uma visita</a></div></div><div class="container footer-bottom"><span>© <span id="current-year"></span> Colégio Menezes e Sousa. Todos os direitos reservados.</span><a href="#contato">Política de privacidade</a></div></footer>
     <a class="whatsapp-float" href="https://wa.me/558532690070" target="_blank" rel="noopener" aria-label="Falar com o colégio pelo WhatsApp"><svg class="whatsapp-icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp"></use></svg></a>
     <script src="js/script.js"></script>
+    <script src="js/hero-slider.js"></script>
     <script src="js/courses.js"></script>
     <script src="js/media.js"></script>
     <script src="js/content.js"></script>
