@@ -39,13 +39,25 @@
   function geometry(slide) {
     const width = slider.clientWidth;
     const height = slider.clientHeight;
-    let radius = num(slide.dataset.circleR, 0.18) * width;
+    const style = getComputedStyle(slider);
+    const padTop = parseFloat(style.paddingTop) || 0;
+    const padBottom = parseFloat(style.paddingBottom) || 0;
+
+    let radius = num(slide.dataset.circleR, 0.15) * width;
     if (SMALL.matches) radius *= 1.15;
-    return {
-      cx: num(slide.dataset.circleCx, 0.6) * width,
-      cy: num(slide.dataset.circleCy, 0.5) * height,
-      r: radius,
-    };
+
+    // Limita o raio para o círculo caber inteiro na área visível do carrossel
+    // (abaixo do cabeçalho fixo e acima do rodapé da seção)
+    radius = Math.min(radius, Math.max(0, height - padTop - padBottom) / 2);
+
+    // Centro vertical calculado na área de conteúdo (fora do padding do topo,
+    // evitando que a foto fique cortada atrás do cabeçalho)
+    let cx = num(slide.dataset.circleCx, 0.6) * width;
+    let cy = padTop + num(slide.dataset.circleCy, 0.5) * Math.max(0, height - padTop - padBottom);
+
+    cx = Math.min(Math.max(cx, radius), width - radius);
+    cy = Math.min(Math.max(cy, padTop + radius), height - padBottom - radius);
+    return { cx, cy, r: radius };
   }
 
   // Círculo grande o bastante para cobrir o carrossel inteiro
